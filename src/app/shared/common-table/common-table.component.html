@@ -1,6 +1,15 @@
 
 <p-table [columns]="cols"  styleClass="p-datatable-gridlines"  [value]="products" responsiveLayout="scroll">
-  <ng-template pTemplate="header" let-columns>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" ></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text"  placeholder="Search keyword" />
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
       <tr>
           <ng-container *ngFor="let col of columns">
             <!--  [pSortableColumnDisabled]="true" method used to show and hide the sorting if needed  -->
@@ -34,7 +43,26 @@
             <!-- DropDown Settings -->
             <ng-container *ngIf="col.type=='dropdown'">
                 <td>
+                    <!-- use [readonly]="true" to disable the dropdown field-->
                     <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
+                </td>
+            </ng-container>
+            <!-- Checkbox Settings -->
+            <ng-container *ngIf="col.type=='checkbox'">
+                <td>
+                    <!-- use [readonly]="true" to set the disable field -->
+                    <p-checkbox [(ngModel)]="rowData[col.field]" [binary]="true"></p-checkbox>
+                </td>
+            </ng-container>
+            <!-- Date Settings -->
+            <ng-container *ngIf="col.type=='date'">
+                <td >
+                    {{rowData[col.field]|date:col.dateFormat }}
+                </td>
+            </ng-container>
+            <ng-container *ngIf="col.type=='input'">
+                <td>
+                    <input type="text" pInputText placeholder="timer"/>
                 </td>
             </ng-container>
         </ng-container>

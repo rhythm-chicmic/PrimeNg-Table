@@ -15,6 +15,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
 import {RatingModule} from 'primeng/rating';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ import {RatingModule} from 'primeng/rating';
     DropdownModule,
     ProgressBarModule,
     InputTextModule,
-    RatingModule
+    RatingModule,
+    CheckboxModule
   ]
 })
 export class PrimeNgModule { }

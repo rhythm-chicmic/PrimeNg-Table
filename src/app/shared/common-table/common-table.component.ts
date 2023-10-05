@@ -38,7 +38,10 @@ export class CommonTableComponent implements OnInit{
       this.productService.getProductsSmall().then(data => this.products = data);
 
       this.cols = [
+          { field: 'checkbox', header: 'Checkbox', disableSort:true, type:'checkbox'},
           { field: 'code', header: 'Code',disableSort:true ,type:'text'},
+          { field: 'createdAt', header: 'Created At', disableSort:false, type:'date' , dateFormat:'dd/mm/yyyy'},
+          { field: 'time', header: 'Timer' ,disableSort:true, type:'input' , inputCriteria:'dateInput'},
           { field: 'name', header: 'Name',disableSort:false ,type:'text'},
           { field: 'category', header: 'Category',disableSort:false ,type:'text'},
           { field: 'quantity', header: 'Quantity',disableSort:false ,type:'text'},
