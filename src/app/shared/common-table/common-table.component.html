@@ -14,9 +14,30 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-          <td *ngFor="let col of columns">
-              {{rowData[col.field] || rowData[col.field.value]}}
-          </td>
+        <ng-container *ngFor="let col of columns">
+            <!-- Normal Settings -->
+            <ng-container *ngIf="col.type=='text'">
+                <td>
+                    {{rowData[col.field] }}
+                </td>
+            </ng-container>
+            <!-- Action Settings -->
+            <ng-container *ngIf="col.type=='action'">
+                <td>
+                    <ng-container *ngFor="let option of col.options">          
+                        <span class="pad">      
+                            <i class="pi" [ngClass]="option?('pi-'+option):''"></i>
+                        </span>
+                    </ng-container>
+                </td>
+            </ng-container>
+            <!-- DropDown Settings -->
+            <ng-container *ngIf="col.type=='dropdown'">
+                <td>
+                    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
+                </td>
+            </ng-container>
+        </ng-container>
       </tr>
   </ng-template>
 </p-table>
