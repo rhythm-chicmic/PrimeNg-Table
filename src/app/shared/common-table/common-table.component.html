@@ -1,10 +1,15 @@
 
-<p-table [columns]="cols" [value]="products" responsiveLayout="scroll">
+<p-table [columns]="cols"  styleClass="p-datatable-gridlines"  [value]="products" responsiveLayout="scroll">
   <ng-template pTemplate="header" let-columns>
       <tr>
-          <th *ngFor="let col of columns">
-              {{col.header}}
-          </th>
+          <ng-container *ngFor="let col of columns">
+            <!--  [pSortableColumnDisabled]="true" method used to show and hide the sorting if needed  -->
+            <th [pSortableColumnDisabled]="col.disableSort" [pSortableColumn]="col.header">{{col.header}}
+                <ng-container *ngIf="!col.disableSort">
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </ng-container>
+            </th>
+            </ng-container>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
